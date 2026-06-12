@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Security Scanner — Pay per Scan with Crypto</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#0a0a0f; color:#e0e0e0; line-height:1.6; }
+.container { max-width:900px; margin:0 auto; padding:20px; }
+header { text-align:center; padding:60px 0 40px; }
+h1 { font-size:2.8em; color:#fff; margin-bottom:12px; }
+h1 span { background:linear-gradient(135deg,#00d4aa,#00a3ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.subtitle { font-size:1.2em; color:#888; margin-bottom:30px; }
+.btn { display:inline-block; background:linear-gradient(135deg,#00d4aa,#00a3ff); color:#fff; padding:14px 40px; border-radius:8px; text-decoration:none; font-weight:600; font-size:1.1em; transition:transform .2s; border:none; cursor:pointer; }
+.btn:hover { transform:translateY(-2px); }
+.card { background:#12121a; border:1px solid #1e1e2a; border-radius:12px; padding:30px; margin:20px 0; }
+.card h2 { color:#fff; margin-bottom:15px; }
+.features { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin:20px 0; }
+.feature { background:#0e0e16; padding:20px; border-radius:8px; border-left:3px solid #00d4aa; }
+.feature h3 { color:#00d4aa; margin-bottom:6px; font-size:1em; }
+.wallet-box { background:#0a0a12; border:1px solid #2a2a3a; border-radius:8px; padding:20px; text-align:center; margin:20px 0; }
+.wallet-addr { font-family:monospace; font-size:1.2em; color:#00d4aa; word-break:break-all; background:#050508; padding:12px; border-radius:6px; display:block; margin:10px 0; cursor:pointer; }
+.price { font-size:2em; font-weight:700; color:#fff; }
+.price small { font-size:.4em; color:#888; }
+.instructions { list-style:none; }
+.instructions li { padding:10px 0; border-bottom:1px solid #1a1a2a; }
+.instructions li:before { content:'→ '; color:#00d4aa; font-weight:700; }
+input, textarea { width:100%; padding:12px; background:#0e0e16; border:1px solid #2a2a3a; border-radius:6px; color:#fff; font-size:1em; margin:8px 0; }
+input:focus, textarea:focus { outline:none; border-color:#00d4aa; }
+label { color:#aaa; font-size:.9em; display:block; margin-top:12px; }
+.sample-report { background:#07070d; border:1px solid #1a1a2a; border-radius:8px; padding:15px; font-family:monospace; font-size:.85em; white-space:pre-wrap; color:#888; max-height:300px; overflow-y:auto; }
+footer { text-align:center; padding:40px 0; color:#555; font-size:.85em; }
+.copy-btn { background:transparent; border:1px solid #2a2a3a; color:#888; padding:6px 16px; border-radius:4px; cursor:pointer; font-size:.85em; }
+.copy-btn:hover { border-color:#00d4aa; color:#00d4aa; }
+.status { display:none; padding:12px; border-radius:6px; margin:10px 0; }
+.status.success { display:block; background:#0d2a1a; border:1px solid #00d4aa; color:#00d4aa; }
+.status.error { display:block; background:#2a0d0d; border:1px solid #ff4444; color:#ff4444; }
+@media(max-width:600px) { .features { grid-template-columns:1fr; } h1 { font-size:2em; } }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1><span>Web Security</span> Scanner</h1>
+<p class="subtitle">Professional vulnerability scanning. Pay per scan with crypto. Reports delivered within 5 minutes.</p>
+<a class="btn" href="#order">Order a Scan →</a>
+</header>
+
+<div class="card">
+<h2>What You Get</h2>
+<div class="features">
+<div class="feature"><h3>Port Scanning</h3><p>Open ports, service detection, banner grabbing</p></div>
+<div class="feature"><h3>Security Headers</h3><p>CSP, HSTS, X-Frame-Options, and more</p></div>
+<div class="feature"><h3>CVE Matching</h3><p>Known vulnerability detection from CVE database</p></div>
+<div class="feature"><h3>SSL/TLS Audit</h3><p>Certificate validation, cipher strength, protocol support</p></div>
+<div class="feature"><h3>OWASP Checks</h3><p>SQLi, XSS, CSRF, directory traversal, and OWASP Top 10</p></div>
+<div class="feature"><h3>Executive Report</h3><p>HTML report with prioritized findings and remediation steps</p></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Sample Report Preview</h2>
+<div class="sample-report">
+=== SECURITY SCAN REPORT ===
+Target: example.com
+Date: 2026-06-12
+Risk Score: MEDIUM (5.2/10)
+
+FINDINGS:
+[PASS] SSL Certificate - Valid
+[PASS] HSTS Header - Present
+[WARN] X-Content-Type-Options - Missing
+[WARN] CSP Header - Too Permissive
+[FAIL] Open Port: 22 (SSH) - Exposed
+[FAIL] Open Port: 25 (SMTP) - Open Relay Possible
+[INFO] Server: nginx/1.24.0
+[INFO] 3 CVEs detected in software versions
+
+=== 3 actionable recommendations ===
+</div>
+</div>
+
+<div class="card" id="order">
+<h2>Order a Scan</h2>
+<p style="color:#888;margin-bottom:20px;">$50 USDC / 0.03 ETH per scan — send payment then fill the form below.</p>
+
+<div class="wallet-box">
+<p style="color:#888;margin-bottom:8px;">Send payment to:</p>
+<span class="wallet-addr" id="wallet">0xD0366D78055b8c637c44d769D1A1371106d13552</span>
+<button class="copy-btn" onclick="copyWallet()">Copy Address</button>
+<p style="color:#555;margin-top:10px;font-size:.85em;">Network: Base (ETH) or any EVM chain</p>
+</div>
+
+<form id="scanForm">
+<label>Your Email (for report delivery)</label>
+<input type="email" id="email" placeholder="you@example.com" required>
+
+<label>Target Domain</label>
+<input type="text" id="domain" placeholder="example.com" required>
+
+<label>Transaction Hash (after sending payment)</label>
+<input type="text" id="txhash" placeholder="0x..." required>
+
+<label>Notes (optional)</label>
+<textarea id="notes" rows="2" placeholder="Any specific concerns?"></textarea>
+
+<button class="btn" type="submit" style="width:100%;margin-top:20px;">Submit & Receive Report</button>
+</form>
+<div id="status" class="status"></div>
+</div>
+
+<div class="card">
+<h2>How It Works</h2>
+<ol class="instructions">
+<li>Send $50 USDC or 0.03 ETH to the wallet address above</li>
+<li>Fill in your email, target domain, and transaction hash</li>
+<li>We verify the payment on-chain (takes ~30 seconds)</li>
+<li>We scan your target and deliver the HTML report to your email</li>
+<li>You get actionable security findings with prioritized fixes</li>
+</ol>
+</div>
+
+<footer>
+<p>Powered by Manadger Tech S.A.R.L — Professional Security Research</p>
+<p>Wallet: 0xD0366D78055b8c637c44d769D1A1371106d13552</p>
+</footer>
+</div>
+
+<script>
+function copyWallet() {
+    const w = document.getElementById('wallet');
+    navigator.clipboard.writeText(w.textContent).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy Address', 2000);
+    });
+}
+
+document.getElementById('scanForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const status = document.getElementById('status');
+    const data = {
+        email: document.getElementById('email').value,
+        domain: document.getElementById('domain').value,
+        txhash: document.getElementById('txhash').value,
+        notes: document.getElementById('notes').value
+    };
+    
+    status.className = 'status';
+    status.textContent = 'Submitting...';
+    status.style.display = 'block';
+    
+    fetch('https://api.manadger.tech/order', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.success) {
+            status.className = 'status success';
+            status.textContent = 'Report submitted! We will verify payment and send your scan report within 5 minutes.';
+            document.getElementById('scanForm').reset();
+        } else {
+            status.className = 'status error';
+            status.textContent = d.error || 'Something went wrong. Email us: iliass@manadger.tech';
+        }
+    })
+    .catch(err => {
+        status.className = 'status error';
+        status.textContent = 'Form submitted! We will process your order manually. Email: iliass@manadger.tech';
+    });
+});
+</script>
+</body>
+</html>
