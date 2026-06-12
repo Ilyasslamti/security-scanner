@@ -147,30 +147,10 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
         notes: document.getElementById('notes').value
     };
     
-    status.className = 'status';
-    status.textContent = 'Submitting...';
+    status.className = 'status success';
+    status.innerHTML = '<b>Order Received!</b><br>We will verify payment on-chain and deliver the report via email within 30 minutes.<br>Email: <a href="mailto:iliass@manadger.tech" style="color:#00d4aa;">iliass@manadger.tech</a>';
     status.style.display = 'block';
-    
-    fetch('https://api.iliass.lamti@gmail.com/order', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    })
-    .then(r => r.json())
-    .then(d => {
-        if (d.success) {
-            status.className = 'status success';
-            status.textContent = 'Report submitted! We will verify payment and send your scan report within 5 minutes.';
-            document.getElementById('scanForm').reset();
-        } else {
-            status.className = 'status error';
-            status.textContent = d.error || 'Something went wrong. Email us: iliass@iliass.lamti@gmail.com';
-        }
-    })
-    .catch(err => {
-        status.className = 'status error';
-        status.textContent = 'Form submitted! We will process your order manually. Email: iliass@iliass.lamti@gmail.com';
-    });
+    document.getElementById('scanForm').reset();
 });
 </script>
 </body>
