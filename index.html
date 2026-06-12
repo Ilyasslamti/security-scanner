@@ -151,7 +151,7 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
     status.textContent = 'Submitting...';
     status.style.display = 'block';
     
-    fetch('https://api.manadger.tech/order', {
+    fetch('https://api.iliass.lamti@gmail.com/order', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
@@ -164,12 +164,12 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
             document.getElementById('scanForm').reset();
         } else {
             status.className = 'status error';
-            status.textContent = d.error || 'Something went wrong. Email us: iliass@manadger.tech';
+            status.textContent = d.error || 'Something went wrong. Email us: iliass@iliass.lamti@gmail.com';
         }
     })
     .catch(err => {
         status.className = 'status error';
-        status.textContent = 'Form submitted! We will process your order manually. Email: iliass@manadger.tech';
+        status.textContent = 'Form submitted! We will process your order manually. Email: iliass@iliass.lamti@gmail.com';
     });
 });
 </script>
